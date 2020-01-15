@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Selector />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Selector from "./components/Selector.vue";
 
 export default {
-  name: 'app',
+  name: "Mini Game Selector",
   components: {
-    HelloWorld
+    Selector
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+button {
+  height: 40px;
+  width: 200px;
+  font-size: 1.5em;
+}
+.result {
+  margin: 20px;
+  font-size: 1.5em;
 }
 </style>
