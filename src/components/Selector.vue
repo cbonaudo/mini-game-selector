@@ -49,7 +49,7 @@ export default {
         this.resultList[category] = this.getRandomValueIn(category);
       }
       this.getResultString();
-      this.keyString = KeyUtils.generateKeyString(this.resultList);
+      this.keyString = KeyUtils.generateKeyString();
     },
     getRandomValueIn(key) {
       // Get the name of a random index in the category defined by 'key'
