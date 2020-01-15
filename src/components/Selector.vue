@@ -36,15 +36,18 @@ export default {
           name: "One-Off Games",
           description: "One Page Rules miscellaneous miniatures games"
         }
-      ]
+      ],
     };
   },
   methods: {
     getResult() {
       const randomIndexGameSystems = MathsUtils.getRandomInt(
+        0,
         this.gameSystems.length
       );
-      this.result = `${this.gameSystems[randomIndexGameSystems].name}`;
+      const randomNumberOfPoints = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
+
+      this.result = `${this.gameSystems[randomIndexGameSystems].name} ${randomNumberOfPoints} points`;
     }
   }
 };
