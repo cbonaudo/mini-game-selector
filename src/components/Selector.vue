@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import MathsUtils from "../utils/MathsUtils";
+
 export default {
   name: "Selector",
   data() {
@@ -39,8 +41,10 @@ export default {
   },
   methods: {
     getResult() {
-      const randomIndex = 0;
-      this.result = `${this.gameSystems[randomIndex].name}`;
+      const randomIndexGameSystems = MathsUtils.getRandomInt(
+        this.gameSystems.length
+      );
+      this.result = `${this.gameSystems[randomIndexGameSystems].name}`;
     }
   }
 };
