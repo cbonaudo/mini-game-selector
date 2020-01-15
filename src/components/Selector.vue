@@ -39,8 +39,11 @@ export default {
   },
   methods: {
     getResult() {
-      const randomIndex = 0;
-      this.result = `${this.gameSystems[randomIndex].name}`;
+      const randomIndexGameSystems = this.getRandomInt(this.gameSystems.length);
+      this.result = `${this.gameSystems[randomIndexGameSystems].name}`;
+    },
+    getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
     }
   }
 };
