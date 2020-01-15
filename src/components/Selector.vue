@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import MathsUtils from "../utils/MathsUtils";
+
 export default {
   name: "Selector",
   data() {
@@ -39,11 +41,10 @@ export default {
   },
   methods: {
     getResult() {
-      const randomIndexGameSystems = this.getRandomInt(this.gameSystems.length);
+      const randomIndexGameSystems = MathsUtils.getRandomInt(
+        this.gameSystems.length
+      );
       this.result = `${this.gameSystems[randomIndexGameSystems].name}`;
-    },
-    getRandomInt(max) {
-      return Math.floor(Math.random() * Math.floor(max));
     }
   }
 };
