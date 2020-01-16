@@ -10,7 +10,7 @@ export const SubSystems = [
   },
   {
     name: "Normal",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "Vanilla rules for fights between regular army.",
     code: "NRM",
     gameSystemCode: ["AOS", "AOF", "WAK", "GRF"],
     minimumPoints: 500,
@@ -19,7 +19,7 @@ export const SubSystems = [
   },
   {
     name: "Apocalypse",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: "OH MY GOD TAKE ALL YOUR MODELS AND PUT THEM ON THE BIGGEST TABLE YOU GET.",
     code: "APO",
     gameSystemCode: ["WAK"],
     minimumPoints: 3000,
