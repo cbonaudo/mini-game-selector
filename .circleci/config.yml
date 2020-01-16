@@ -35,4 +35,9 @@ jobs:
 
       # run tests!
       - run: npm test
+
+      - add_ssh_keys:
+          fingerprints:
+            - "7d:b7:f8:6b:52:cb:b1:c4:08:4b:cd:04:2c:cc:ae:d5"
+
       - run: npm run deploy
