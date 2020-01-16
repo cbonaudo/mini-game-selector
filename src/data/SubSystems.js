@@ -10,7 +10,7 @@ export const SubSystems = [
   },
   {
     name: "Normal",
-    description: "Vanilla rules for fights between regular army.",
+    description: "Vanilla rules for fights between regular armies.",
     code: "NRM",
     gameSystemCode: ["AOS", "AOF", "WAK", "GRF"],
     minimumPoints: 500,
