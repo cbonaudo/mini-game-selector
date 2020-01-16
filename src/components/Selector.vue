@@ -9,17 +9,11 @@
       {{ `${selection.gameSystem.name} ${selection.subSystem.name} ${selection.points} ${selection.scenario.name}` }}
     </div>
 
-    <div v-if="selection.gameSystem.description">
-      {{ `- ${selection.gameSystem.description}` }}
-    </div>
+    <div v-if="selection.gameSystem.description">{{ `- ${selection.gameSystem.description}` }}</div>
 
-    <div v-if="selection.subSystem.description">
-      {{ `- ${selection.subSystem.description}` }}
-    </div>
+    <div v-if="selection.subSystem.description">{{ `- ${selection.subSystem.description}` }}</div>
 
-    <div v-if="selection.scenario.description">
-      {{ `- Scenario: ${selection.scenario.description}` }}
-    </div>
+    <div v-if="selection.scenario.description">{{ `- Scenario: ${selection.scenario.description}` }}</div>
 
     <div v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
@@ -40,7 +34,7 @@ export default {
         gameSystem: { name: "", description: "" },
         points: "",
         scenario: { name: "", description: "" },
-        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1},
+        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
       },
       keyString: "",
     };
@@ -60,10 +54,15 @@ export default {
       if (validSubSystems.length) {
         const subSystemIndex = MathsUtils.getRandomInt(0, validSubSystems.length);
         this.selection.subSystem = validSubSystems[subSystemIndex];
-      }
-      else {
+      } else {
         // Reseting the subSystem, otherwise we will get the previous one if there is no valid subSystem
-        this.selection.subSystem = { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 };
+        this.selection.subSystem = {
+          name: "",
+          description: "",
+          minimumPoints: -1,
+          maximumPoints: -1,
+          pointsIncrement: -1,
+        };
         this.selection.points = "";
       }
 
@@ -71,14 +70,20 @@ export default {
 
       if (this.selection.subSystem.minimumPoints > 0) {
         // Calculating the points using the values from the game sub-system
-        const randomPoints = MathsUtils.getRandomInt(this.selection.subSystem.minimumPoints, this.selection.subSystem.maximumPoints)
+        const randomPoints = MathsUtils.getRandomInt(
+          this.selection.subSystem.minimumPoints,
+          this.selection.subSystem.maximumPoints
+        );
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
       /* DRAWING A SCENARIO */
 
       const validScenarios = Scenarios.filter(scenario => {
-        return scenario.subSystemCodes.includes(this.selection.subSystem.code);
+        return (
+          scenario.gameSystemCodes.includes(this.selection.gameSystem.code) &&
+          scenario.subSystemCodes.includes(this.selection.subSystem.code)
+        );
       });
 
       if (validScenarios.length) {
