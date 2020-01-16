@@ -12,9 +12,9 @@
     <div v-if="selection.gameSystem.description">
       {{ `- ${selection.gameSystem.description}` }}
     </div>
-    
+
     <div v-if="selection.subSystem.description">
-    {{ `- ${selection.subSystem.description}` }}
+      {{ `- ${selection.subSystem.description}` }}
     </div>
 
     <div v-if="selection.scenario.description">
@@ -40,7 +40,7 @@ export default {
         gameSystem: { name: "", description: "" },
         points: "",
         scenario: { name: "", description: "" },
-        subSystem: { name: "", description: ""},
+        subSystem: { name: "", description: "" },
       },
       keyString: "",
     };
@@ -49,8 +49,9 @@ export default {
     computeResult() {
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
+      console.log(this.gameSystemIndex);
 
-      const validSubSystems = SubSystems.filter((subSystem) => {
+      const validSubSystems = SubSystems.filter(subSystem => {
         return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
       });
       if (validSubSystems.length) {
