@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>MINIATURE WARGAMING SELECTOR</h1>
-    <h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
+    <h2>WWWWWWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGHHH!!!!!!!</h2>
 
     <button v-on:click="computeResult()">I WANNA FIGHT</button>
 
@@ -40,7 +40,7 @@ export default {
         gameSystem: { name: "", description: "" },
         points: "",
         scenario: { name: "", description: "" },
-        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1},
+        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
       },
       keyString: "",
     };
@@ -56,16 +56,24 @@ export default {
       if (validSubSystems.length) {
         const subSystemIndex = MathsUtils.getRandomInt(0, validSubSystems.length);
         this.selection.subSystem = validSubSystems[subSystemIndex];
-      }
-      else {
+      } else {
         // Reseting the subSystem, otherwise we will get the previous one if there is no valid subSystem
-        this.selection.subSystem = { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 };
+        this.selection.subSystem = {
+          name: "",
+          description: "",
+          minimumPoints: -1,
+          maximumPoints: -1,
+          pointsIncrement: -1,
+        };
         this.selection.points = "";
       }
 
       if (this.selection.subSystem.minimumPoints > 0) {
         // Calculating the points using the values from the game sub-system
-        const randomPoints = MathsUtils.getRandomInt(this.selection.subSystem.minimumPoints, this.selection.subSystem.maximumPoints)
+        const randomPoints = MathsUtils.getRandomInt(
+          this.selection.subSystem.minimumPoints,
+          this.selection.subSystem.maximumPoints
+        );
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
