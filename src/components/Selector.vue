@@ -47,8 +47,12 @@ export default {
   },
   methods: {
     computeResult() {
+      /* DRAWING A GAME SYSTEM */
+
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
+
+      /* DRAWING A GAME SUB SYSTEM */
 
       const validSubSystems = SubSystems.filter(subSystem => {
         return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
@@ -62,6 +66,8 @@ export default {
         this.selection.subSystem = { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 };
         this.selection.points = "";
       }
+
+      /* DRAWING A MAXIMUM POINTS VALUE */
 
       if (this.selection.subSystem.minimumPoints > 0) {
         // Calculating the points using the values from the game sub-system
@@ -82,6 +88,8 @@ export default {
         // Reseting the scenario, otherwise we will get the previous one if there is no valid scenario
         this.selection.scenario = { name: "", description: "" };
       }
+
+      /* GENERATING GAME KEY */
 
       this.keyString = KeyUtils.generateKeyString();
     },
