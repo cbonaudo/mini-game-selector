@@ -39,5 +39,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "0d:bf:31:61:fa:2b:f6:d7:89:86:31:07:78:5e:0a:42"
+      - run: git config --global user.email cbonaudo@hotmail.fr
+      - run: git config --global user.name cbonaudo
 
       - run: npm run deploy
