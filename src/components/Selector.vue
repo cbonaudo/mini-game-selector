@@ -2,53 +2,32 @@
   <div class="hello">
     <h1>MINIATURE WARGAMING SELECTOR</h1>
     <h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
-    <button v-on:click="getResult()">I WANNA FIGHT</button>
+    <button v-on:click="computeResult()">I WANNA FIGHT</button>
     <div class="result">{{ result }}</div>
+    <div v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
 </template>
 
 <script>
 import MathsUtils from "../utils/MathsUtils";
+import KeyUtils from "../utils/KeyUtils";
+import { GameSystems } from "../data/GameSystems";
 
 export default {
   name: "Selector",
   data() {
     return {
       result: "",
-      gameSystems: [
-        {
-          name: "Age Of Sigmar",
-          description: "Games Workshop's official Fantasy miniatures wargame"
-        },
-        {
-          name: "Warhammer 40.000",
-          description: "Games Workshop's official Sci-Fi miniatures wargame"
-        },
-        {
-          name: "Age Of Fantasy",
-          description: "One Page Rules spin for Fantasy miniatures wargaming"
-        },
-        {
-          name: "Grimdark Future",
-          description: "One Page Rules spin on Sci-Fi miniatures wargaming"
-        },
-        {
-          name: "One-Off Games",
-          description: "One Page Rules miscellaneous miniatures games"
-        }
-      ],
     };
   },
   methods: {
-    getResult() {
-      const randomIndexGameSystems = MathsUtils.getRandomInt(
-        0,
-        this.gameSystems.length
-      );
+    computeResult() {
+      const randomIndexGameSystems = MathsUtils.getRandomInt(0, GameSystems.length);
       const randomNumberOfPoints = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
 
-      this.result = `${this.gameSystems[randomIndexGameSystems].name} ${randomNumberOfPoints} points`;
-    }
-  }
+      this.result = `${GameSystems[randomIndexGameSystems].name} ${randomNumberOfPoints} points`;
+      this.keyString = KeyUtils.generateKeyString();
+    },
+  },
 };
 </script>
