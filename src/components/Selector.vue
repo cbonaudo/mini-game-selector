@@ -49,8 +49,12 @@ export default {
   },
   methods: {
     computeResult() {
+      /* DRAWING A GAME SYSTEM */
+
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
+
+      /* DRAWING A GAME SUB SYSTEM */
 
       const validSubSystems = SubSystems.filter(subSystem => {
         return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
@@ -70,6 +74,8 @@ export default {
         this.selection.points = "";
       }
 
+      /* DRAWING A MAXIMUM POINTS VALUE */
+
       if (this.selection.subSystem.minimumPoints > 0) {
         // Calculating the points using the values from the game sub-system
         const randomPoints = MathsUtils.getRandomInt(
@@ -79,8 +85,24 @@ export default {
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
-      const scenarioIndex = MathsUtils.getRandomInt(0, Scenarios.length);
-      this.selection.scenario = Scenarios[scenarioIndex];
+      /* DRAWING A SCENARIO */
+
+      const validScenarios = Scenarios.filter(scenario => {
+        return (
+          scenario.gameSystemCodes.includes(this.selection.gameSystem.code) &&
+          scenario.subSystemCodes.includes(this.selection.subSystem.code)
+        );
+      });
+
+      if (validScenarios.length) {
+        const scenarioIndex = MathsUtils.getRandomInt(0, validScenarios.length);
+        this.selection.scenario = validScenarios[scenarioIndex];
+      } else {
+        // Reseting the scenario, otherwise we will get the previous one if there is no valid scenario
+        this.selection.scenario = { name: "", description: "" };
+      }
+
+      /* GENERATING GAME KEY */
 
       this.keyString = KeyUtils.generateKeyString();
     },
