@@ -2,18 +2,16 @@ export const Scenarios = [
     {
         name: "Scenario 01",
         description: "Description scenario 01",
-        code: "AA",
+        code: "SCA",
     },
-
     {
         name: "Scenario 02",
         description: "Description scenario 02",           
-        code: "BB",
+        code: "SCB",
     },
-
     {
         name: "Scenario 03",
         description: "Description scenario 03",
-        code: "CC",  
+        code: "SCC",  
     },
 ];
