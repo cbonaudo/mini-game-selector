@@ -10,5 +10,5 @@ npm start
 ## Project start
 
 ```
-npm star
+npm start
 ```
