@@ -40,7 +40,7 @@ export default {
         gameSystem: { name: "", description: "" },
         points: "",
         scenario: { name: "", description: "" },
-        subSystem: { name: "", description: ""},
+        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1},
       },
       keyString: "",
     };
@@ -57,8 +57,17 @@ export default {
         const subSystemIndex = MathsUtils.getRandomInt(0, validSubSystems.length);
         this.selection.subSystem = validSubSystems[subSystemIndex];
       }
+      else {
+        // Reseting the subSystem, otherwise we will get the previous one if there is no valid subSystem
+        this.selection.subSystem = { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 };
+        this.selection.points = "";
+      }
 
-      this.selection.points = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
+      if (this.selection.subSystem.minimumPoints > 0) {
+        // Calculating the points using the values from the game sub-system
+        var randomPoints = MathsUtils.getRandomInt(this.selection.subSystem.minimumPoints, this.selection.subSystem.maximumPoints)
+        this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
+      }
 
       const scenarioIndex = MathsUtils.getRandomInt(0, Scenarios.length);
       this.selection.scenario = Scenarios[scenarioIndex];
