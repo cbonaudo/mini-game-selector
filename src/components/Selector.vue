@@ -5,17 +5,25 @@
 
     <button v-on:click="computeResult()">I WANNA FIGHT</button>
 
-    <div class="selection">
-      {{ `${selection.gameSystem.name} ${selection.subSystem.name} ${selection.points} ${selection.scenario.name}` }}
+    <div v-if="selection.gameSystem.name" class="selection">
+      {{
+        `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
+      }}
     </div>
 
-    <div v-if="selection.gameSystem.description">{{ `- ${selection.gameSystem.description}` }}</div>
+    <div v-if="selection.gameSystem.description" class="description">
+      {{ `- ${selection.gameSystem.description}` }}
+    </div>
 
-    <div v-if="selection.subSystem.description">{{ `- ${selection.subSystem.description}` }}</div>
+    <div v-if="selection.subSystem.description" class="description">
+      {{ `- ${selection.subSystem.description}` }}
+    </div>
 
-    <div v-if="selection.scenario.description">{{ `- Scenario: ${selection.scenario.description}` }}</div>
+    <div v-if="selection.scenario.description" class="description">
+      {{ `- Scenario: ${selection.scenario.description}` }}
+    </div>
 
-    <div v-if="keyString">Share this key : {{ keyString }}</div>
+    <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
 </template>
 
