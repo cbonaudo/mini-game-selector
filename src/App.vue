@@ -8,10 +8,10 @@
 import Selector from "./components/Selector.vue";
 
 export default {
-  name: "Mini Game Selector",
+  name: "mini-game-selector",
   components: {
-    Selector
-  }
+    Selector,
+  },
 };
 </script>
 
@@ -29,7 +29,7 @@ button {
   width: 200px;
   font-size: 1.5em;
 }
-.result {
+.selection {
   margin: 20px;
   font-size: 1.5em;
 }
