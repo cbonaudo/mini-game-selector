@@ -50,8 +50,13 @@ export default {
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
 
-      const subSystemIndex = MathsUtils.getRandomInt(0, SubSystems.length);
-      this.selection.subSystem = SubSystems[subSystemIndex];
+      const validSubSystems = SubSystems.filter((subSystem) => {
+        return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
+      });
+      if (validSubSystems.length) {
+        const subSystemIndex = MathsUtils.getRandomInt(0, validSubSystems.length);
+        this.selection.subSystem = validSubSystems[subSystemIndex];
+      }
 
       this.selection.points = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
 
