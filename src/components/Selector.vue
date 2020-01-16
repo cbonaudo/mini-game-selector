@@ -27,8 +27,8 @@ export default {
   },
   methods: {
     computeResult() {
-      const GSIndex = MathsUtils.getRandomInt(0, GameSystems.length);
-      this.selection.gameSystem = GameSystems[GSIndex].name;
+      const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
+      this.selection.gameSystem = GameSystems[gameSystemIndex].name;
 
       this.selection.points = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
 
