@@ -49,7 +49,6 @@ export default {
     computeResult() {
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
-      console.log(this.gameSystemIndex);
 
       const validSubSystems = SubSystems.filter(subSystem => {
         return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
@@ -66,7 +65,7 @@ export default {
 
       if (this.selection.subSystem.minimumPoints > 0) {
         // Calculating the points using the values from the game sub-system
-        var randomPoints = MathsUtils.getRandomInt(this.selection.subSystem.minimumPoints, this.selection.subSystem.maximumPoints)
+        const randomPoints = MathsUtils.getRandomInt(this.selection.subSystem.minimumPoints, this.selection.subSystem.maximumPoints)
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
