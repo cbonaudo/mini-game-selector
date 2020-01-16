@@ -34,12 +34,15 @@ button {
   margin: 20px;
   font-size: 1.5em;
 }
+.description {
+  margin-bottom: 10px;
+}
 .key-string {
   margin: auto;
+  width: fit-content;
   margin-top: 40px;
   padding: 5px 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: lightgrey;
-  width: fit-content;
 }
 </style>
