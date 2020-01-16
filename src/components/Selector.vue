@@ -21,7 +21,7 @@
       {{ `- Scenario: ${selection.scenario.description}` }}
     </div>
 
-    <div v-if="keyString">Share this key : {{ keyString }}</div>
+    <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
 </template>
 
