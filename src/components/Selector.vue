@@ -69,8 +69,19 @@ export default {
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
-      const scenarioIndex = MathsUtils.getRandomInt(0, Scenarios.length);
-      this.selection.scenario = Scenarios[scenarioIndex];
+      /* DRAWING A SCENARIO */
+
+      const validScenarios = Scenarios.filter(scenario => {
+        return scenario.subSystemCodes.includes(this.selection.subSystem.code);
+      });
+
+      if (validScenarios.length) {
+        const scenarioIndex = MathsUtils.getRandomInt(0, validScenarios.length);
+        this.selection.scenario = validScenarios[scenarioIndex];
+      } else {
+        // Reseting the scenario, otherwise we will get the previous one if there is no valid scenario
+        this.selection.scenario = { name: "", description: "" };
+      }
 
       this.keyString = KeyUtils.generateKeyString();
     },
