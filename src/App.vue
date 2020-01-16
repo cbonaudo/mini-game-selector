@@ -28,6 +28,7 @@ button {
   height: 40px;
   width: 200px;
   font-size: 1.5em;
+  border-radius: 5px;
 }
 .selection {
   margin: 20px;
