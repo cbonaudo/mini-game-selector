@@ -4,15 +4,23 @@
     <h2>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</h2>
 
     <button v-on:click="computeResult()">I WANNA FIGHT</button>
+
     <div class="selection">
-      {{ `${selection.gameSystem.name} ${selection.points} ${selection.scenario.name}` }}
+      {{ `${selection.gameSystem.name} ${selection.subSystem.name} ${selection.points} ${selection.scenario.name}` }}
     </div>
-    <div>
-      {{ `${selection.gameSystem.description}` }}
+
+    <div v-if="selection.gameSystem.description">
+      {{ `- ${selection.gameSystem.description}` }}
     </div>
-    <div>
-      {{ `${selection.scenario.description}` }}
+    
+    <div v-if="selection.subSystem.description">
+    {{ `- ${selection.subSystem.description}` }}
     </div>
+
+    <div v-if="selection.scenario.description">
+      {{ `- Scenario: ${selection.scenario.description}` }}
+    </div>
+
     <div v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
 </template>
@@ -22,6 +30,7 @@ import MathsUtils from "../utils/MathsUtils";
 import KeyUtils from "../utils/KeyUtils";
 import { GameSystems } from "../data/GameSystems";
 import { Scenarios } from "../data/Scenarios";
+import { SubSystems } from "../data/SubSystems";
 
 export default {
   name: "Selector",
@@ -31,6 +40,7 @@ export default {
         gameSystem: { name: "", description: "" },
         points: "",
         scenario: { name: "", description: "" },
+        subSystem: { name: "", description: ""},
       },
       keyString: "",
     };
@@ -39,6 +49,9 @@ export default {
     computeResult() {
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
       this.selection.gameSystem = GameSystems[gameSystemIndex];
+
+      const subSystemIndex = MathsUtils.getRandomInt(0, SubSystems.length);
+      this.selection.subSystem = SubSystems[subSystemIndex];
 
       this.selection.points = MathsUtils.roundUp(MathsUtils.getRandomInt(100, 2000), 50);
 
