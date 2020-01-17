@@ -12,3 +12,9 @@ npm start
 ```
 npm start
 ```
+
+## Run tests
+
+```
+npm test
+```
