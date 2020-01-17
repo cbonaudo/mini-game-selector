@@ -2,7 +2,6 @@ export const GameSystems = [
   {
     name: "Age Of Sigmar",
     code: "AOS",
-    logo: "aos-logo",
     description: "Games Workshop's official Fantasy miniatures wargame",
   },
   {

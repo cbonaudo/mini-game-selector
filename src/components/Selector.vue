@@ -3,18 +3,18 @@
     <h1>MINIATURE WARGAMING SELECTOR</h1>
     <h2>WWWWWWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGHHH!!!!!!!</h2>
 
-    <!-- <img alt="Age of Sigmar logo" src="../assets/aos-logo.png"> -->
-
-    <button v-on:click="computeResult()">I WANNA FIGHT</button>
-
+   <button v-on:click="computeResult()" class="generator">I WANNA FIGHT !</button>
+   
     <div v-if="selection.gameSystem.name" class="selection">
       {{
       `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
       }}
     </div>
 
-    <div v-if="selection.gameSystem.name">
-      <img v-bind:src="getImg(selection.gameSystem.logo)" />
+    <div 
+    v-if="selection.gameSystem.name">
+      <img v-bind:src="getImg(selection.gameSystem.code)"  
+      class="game-system"/>
     </div>
 
     <div
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       selection: {
-        gameSystem: { name: "", description: "", logo: "" },
+        gameSystem: { name: "", description: "", code: "" },
         points: "",
         scenario: { name: "", description: "" },
         subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
@@ -115,6 +115,7 @@ export default {
 
       this.keyString = KeyUtils.generateKeyString();
     },
+
     getImg(logoUrl) {
       if (logoUrl) {
         return require(`../assets/${logoUrl}.png`);
