@@ -12,7 +12,7 @@
     </div>
 
     <div 
-    v-if="selection.gameSystem.name">
+    v-if="selection.gameSystem.code">
       <img v-bind:src="getImg(selection.gameSystem.code)"  
       class="game-system"/>
     </div>
