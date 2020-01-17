@@ -3,32 +3,34 @@
     <h1>MINIATURE WARGAMING SELECTOR</h1>
     <h2>WWWWWWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGHHH!!!!!!!</h2>
 
-   <!-- <img alt="Age of Sigmar logo" src="../assets/aos-logo.png"> -->
-
+    <!-- <img alt="Age of Sigmar logo" src="../assets/aos-logo.png"> -->
 
     <button v-on:click="computeResult()">I WANNA FIGHT</button>
 
     <div v-if="selection.gameSystem.name" class="selection">
       {{
-        `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
+      `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
       }}
     </div>
 
     <div v-if="selection.gameSystem.name">
-      <p v-bind:src="`..assets/${selection.gameSystem.logo}.png`"></p>
+      <img v-bind:src="getImg(selection.gameSystem.logo)" />
     </div>
 
-    <div v-if="selection.gameSystem.description" class="description">
-      {{ `- ${selection.gameSystem.description}` }}
-    </div>
+    <div
+      v-if="selection.gameSystem.description"
+      class="description"
+    >{{ `- ${selection.gameSystem.description}` }}</div>
 
-    <div v-if="selection.subSystem.description" class="description">
-      {{ `- ${selection.subSystem.description}` }}
-    </div>
+    <div
+      v-if="selection.subSystem.description"
+      class="description"
+    >{{ `- ${selection.subSystem.description}` }}</div>
 
-    <div v-if="selection.scenario.description" class="description">
-      {{ `- Scenario: ${selection.scenario.description}` }}
-    </div>
+    <div
+      v-if="selection.scenario.description"
+      class="description"
+    >{{ `- Scenario: ${selection.scenario.description}` }}</div>
 
     <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
   </div>
@@ -112,6 +114,11 @@ export default {
       /* GENERATING GAME KEY */
 
       this.keyString = KeyUtils.generateKeyString();
+    },
+    getImg(logoUrl) {
+      if (logoUrl) {
+        return require(`../assets/${logoUrl}.png`);
+      } else return "";
     },
   },
 };
