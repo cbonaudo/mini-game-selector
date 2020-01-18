@@ -1,6 +1,6 @@
 export default class KeyUtils {
-  static generateKeyString() {
-    return "&1q3dsf89é!";
+  static generateKeyString(selection) {
+    return [selection.gameSystem.code, selection.points, selection.subSystem.code, selection.scenario.code].join("-");
   }
 
   static decodeKeyString() {
