@@ -40,7 +40,7 @@ export default {
 }
 
 .generator:hover {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   transform: scale(1.1);
   font-size: 1.6em;
   color: yellowgreen;
@@ -56,13 +56,5 @@ img.game-system {
 }
 .description {
   margin-bottom: 10px;
-}
-.key-string {
-  margin: auto;
-  width: fit-content;
-  margin-top: 40px;
-  padding: 5px 15px;
-  border-radius: 10px;
-  background-color: lightgrey;
 }
 </style>

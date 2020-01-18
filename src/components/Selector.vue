@@ -3,18 +3,16 @@
     <h1>MINIATURE WARGAMING SELECTOR</h1>
     <h2>WWWWWWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGHHH!!!!!!!</h2>
 
-   <button v-on:click="computeResult()" class="generator">I WANNA FIGHT !</button>
-   
+    <button v-on:click="computeResult()" class="generator">I WANNA FIGHT !</button>
+
     <div v-if="selection.gameSystem.name" class="selection">
       {{
       `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
       }}
     </div>
 
-    <div 
-    v-if="selection.gameSystem.code">
-      <img v-bind:src="getImg(selection.gameSystem.code)"  
-      class="game-system"/>
+    <div v-if="selection.gameSystem.code">
+      <img v-bind:src="getImg(selection.gameSystem.code)" class="game-system" />
     </div>
 
     <div
@@ -32,19 +30,23 @@
       class="description"
     >{{ `- Scenario: ${selection.scenario.description}` }}</div>
 
-    <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
+    <KeyString v-bind:keyString="keyString" />
   </div>
 </template>
 
 <script>
 import MathsUtils from "../utils/MathsUtils";
 import KeyUtils from "../utils/KeyUtils";
+import KeyString from "./shared/KeyString.vue";
 import { GameSystems } from "../data/GameSystems";
 import { Scenarios } from "../data/Scenarios";
 import { SubSystems } from "../data/SubSystems";
 
 export default {
   name: "Selector",
+  components: {
+    KeyString,
+  },
   data() {
     return {
       selection: {
