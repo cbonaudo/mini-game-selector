@@ -27,13 +27,14 @@
       </div>
     </div>
 
-    <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
+    <KeyString v-bind:keyString="keyString" />
   </div>
 </template>
 
 <script>
 import MathsUtils from "../utils/MathsUtils";
 import KeyUtils from "../utils/KeyUtils";
+import KeyString from "./shared/KeyString.vue";
 import DataUtils from "../utils/DataUtils";
 
 import { GameSystems } from "../data/GameSystems";
@@ -42,6 +43,9 @@ import { SubSystems } from "../data/SubSystems";
 
 export default {
   name: "Selector",
+  components: {
+    KeyString,
+  },
   data() {
     let keyString = "";
     let selection = "";
