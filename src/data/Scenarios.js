@@ -48,4 +48,11 @@ export const Scenarios = [
     gameSystemCodes: ["AOS", "AOF"],
     subSystemCodes: ["SKI"],
   },
+  {
+    name: "First Blood",
+    description: "The player that dealt the most damage wins",
+    code: "FBO",
+    gameSystemCodes: ["AOS", "AOF"],
+    subSystemCodes: ["NRM"],
+  },
 ];

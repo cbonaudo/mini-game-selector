@@ -48,10 +48,10 @@ export default {
   data() {
     return {
       selection: {
-        gameSystem: { name: "", description: "", code: "" },
+        gameSystem: { name: "", code: "", description: "" },
         points: "",
-        scenario: { name: "", description: "" },
-        subSystem: { name: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
+        scenario: { name: "", code: "", description: "" },
+        subSystem: { name: "", code: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
       },
       keyString: "",
     };
@@ -113,7 +113,7 @@ export default {
 
       /* GENERATING GAME KEY */
 
-      this.keyString = KeyUtils.generateKeyString();
+      this.keyString = KeyUtils.generateKeyString(this.selection);
     },
 
     getImg(logoUrl) {
