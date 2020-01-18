@@ -1,35 +1,15 @@
 import KeyUtils from "../../src/utils/KeyUtils.js";
+import DataUtils from "../../src/utils/DataUtils.js";
 
 const testData = [
   {
     key: "AOS-2000-NRM-FBO",
 
     selection: {
-      gameSystem: {
-        name: "Age Of Sigmar",
-        code: "AOS",
-        description: "Games Workshop's official Fantasy miniatures wargame",
-      },
-
+      gameSystem: DataUtils.getGameSystemByCode("AOS"),
       points: "2000",
-
-      subSystem: {
-        name: "Normal",
-        description: "Vanilla rules for fights between regular armies.",
-        code: "NRM",
-        gameSystemCode: ["AOS", "AOF", "WAK", "GRF"],
-        minimumPoints: 500,
-        maximumPoints: 3000,
-        pointsIncrement: 50,
-      },
-
-      scenario: {
-        name: "First Blood",
-        description: "The player that dealt the most damage wins",
-        code: "FBO",
-        gameSystemCodes: ["AOS", "AOF"],
-        subSystemCodes: ["NRM"],
-      },
+      subSystem: DataUtils.getSubSystemByCode("NRM"),
+      scenario: DataUtils.getScenarioByCode("FBO"),
     },
   },
 
@@ -37,74 +17,39 @@ const testData = [
     key: "WAK-200-SKI-AHE",
 
     selection: {
-      gameSystem: {
-        name: "Warhammer 40.000",
-        code: "WAK",
-        description: "Games Workshop's official Sci-Fi miniatures wargame",
-      },
-
+      gameSystem: DataUtils.getGameSystemByCode("WAK"),
       points: "200",
-
-      subSystem: {
-        name: "Skirmish",
-        description: "Modifications to the standard rules for intense fights between small warbands.",
-        code: "SKI",
-        gameSystemCode: ["AOS", "AOF", "WAK", "GRF"],
-        minimumPoints: 50,
-        maximumPoints: 750,
-        pointsIncrement: 25,
-      },
-
-      scenario: {
-        name: "A Time For Heroes",
-        description: "Simple Deathmatch-like scenario",
-        code: "AHE",
-        gameSystemCodes: ["AOS", "AOF"],
-        subSystemCodes: ["SKI"],
-      },
+      subSystem: DataUtils.getSubSystemByCode("SKI"),
+      scenario: DataUtils.getScenarioByCode("AHE"),
     },
   },
 
   {
-    key: "OOG",
+    key: "OOG-0-NRM-DEA",
 
     selection: {
-      gameSystem: {
-        name: "One-Off Games",
-        code: "OOG",
-        description: "One Page Rules miscellaneous miniatures games",
-      },
+      gameSystem: DataUtils.getGameSystemByCode("OOG"),
+      points: "0",
+      subSystem: DataUtils.getSubSystemByCode("NRM"),
+      scenario: DataUtils.getScenarioByCode("DEA"),
     },
   },
 
   {
-    key: "WAK-20500-APO",
+    key: "WAK-20500-APO-DEA",
 
     selection: {
-      gameSystem: {
-        name: "Warhammer 40.000",
-        code: "WAK",
-        description: "Games Workshop's official Sci-Fi miniatures wargame",
-      },
-
+      gameSystem: DataUtils.getGameSystemByCode("WAK"),
       points: "20500",
-
-      subSystem: {
-        name: "Apocalypse",
-        description: "OH MY GOD TAKE ALL YOUR MODELS AND PUT THEM ON THE BIGGEST TABLE YOU GET.",
-        code: "APO",
-        gameSystemCode: ["WAK"],
-        minimumPoints: 3000,
-        maximumPoints: 30000,
-        pointsIncrement: 100,
-      },
+      subSystem: DataUtils.getSubSystemByCode("APO"),
+      scenario: DataUtils.getScenarioByCode("DEA"),
     },
   },
 ];
 
 describe("KeyUtils.js", () => {
   describe("generateKeyString()", () => {
-    xit("Get a key - Basic selection", () => {
+    it("Get a key - Basic selection", () => {
       testData.forEach(element => {
         expect(KeyUtils.generateKeyString(element.selection)).toEqual(element.key);
       });
@@ -112,7 +57,7 @@ describe("KeyUtils.js", () => {
   });
 
   describe("decodeKeyString()", () => {
-    xit("Decode a key - Basic selection", () => {
+    it("Decode a key - Basic selection", () => {
       testData.forEach(element => {
         expect(KeyUtils.decodeKeyString(element.key)).toEqual(element.selection);
       });
