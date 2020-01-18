@@ -62,5 +62,14 @@ describe("KeyUtils.js", () => {
         expect(KeyUtils.decodeKeyString(element.key)).toEqual(element.selection);
       });
     });
+
+    it("Decode a key - Broken key", () => {
+      try {
+        KeyUtils.decodeKeyString("WRONG");
+        throw "decodeKeyString(’WRONG’) should throw an error";
+      } catch (e) {
+        expect(e).toEqual("No element matching WRONG was found");
+      }
+    });
   });
 });

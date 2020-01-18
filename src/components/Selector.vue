@@ -5,22 +5,26 @@
 
     <button v-on:click="computeResult()" class="generator">I WANNA FIGHT !</button>
 
-    <div v-if="selection.gameSystem.name" class="selection">
-      {{
-        `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
-      }}
-    </div>
+    <div v-if="selection">
+      <div v-if="selection.gameSystem.name" class="selection">
+        {{
+          `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
+        }}
+      </div>
 
-    <div v-if="selection.gameSystem.code">
-      <img v-bind:src="getImg(selection.gameSystem.code)" class="game-system" />
-    </div>
+      <div v-if="selection.gameSystem.code">
+        <img v-bind:src="getImg(selection.gameSystem.code)" class="game-system" />
+      </div>
 
-    <div v-if="selection.gameSystem.description" class="description">{{ `- ${selection.gameSystem.description}` }}</div>
+      <div v-if="selection.gameSystem.description" class="description">
+        {{ `- ${selection.gameSystem.description}` }}
+      </div>
 
-    <div v-if="selection.subSystem.description" class="description">{{ `- ${selection.subSystem.description}` }}</div>
+      <div v-if="selection.subSystem.description" class="description">{{ `- ${selection.subSystem.description}` }}</div>
 
-    <div v-if="selection.scenario.description" class="description">
-      {{ `- Scenario: ${selection.scenario.description}` }}
+      <div v-if="selection.scenario.description" class="description">
+        {{ `- Scenario: ${selection.scenario.description}` }}
+      </div>
     </div>
 
     <div class="key-string" v-if="keyString">Share this key : {{ keyString }}</div>
@@ -39,19 +43,29 @@ import { SubSystems } from "../data/SubSystems";
 export default {
   name: "Selector",
   data() {
+    let keyString = "";
+    let selection = "";
+    let uri = window.location.search.substring(1);
+
+    const params = new URLSearchParams(uri);
+    const keyParameter = params.get("key");
+
+    if (keyParameter !== null) {
+      keyString = keyParameter;
+      selection = KeyUtils.decodeKeyString(keyString);
+    }
+
     return {
-      selection: {
-        gameSystem: DataUtils.getGameSystemByCode("AOS"),
-        points: "0",
-        subSystem: DataUtils.getSubSystemByCode("NRM"),
-        scenario: DataUtils.getScenarioByCode("DEA"),
-      },
-      keyString: "AOS-0-NRM-DEA",
+      selection: selection,
+      keyString: keyString,
     };
   },
 
   methods: {
     computeResult() {
+      this.keyString = "AOS-2000-NRM-DEA";
+      this.selection = KeyUtils.decodeKeyString(this.keyString);
+
       /* DRAWING A GAME SYSTEM */
 
       const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
