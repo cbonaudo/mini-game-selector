@@ -64,6 +64,42 @@ const testData = [
       },
     },
   },
+
+  {
+    key: "OOG",
+
+    selection: {
+      gameSystem: {
+        name: "One-Off Games",
+        code: "OOG",
+        description: "One Page Rules miscellaneous miniatures games",
+      },
+    },
+  },
+
+  {
+    key: "WAK-20500-APO",
+
+    selection: {
+      gameSystem: {
+        name: "Warhammer 40.000",
+        code: "WAK",
+        description: "Games Workshop's official Sci-Fi miniatures wargame",
+      },
+
+      points: "20500",
+
+      subSystem: {
+        name: "Apocalypse",
+        description: "OH MY GOD TAKE ALL YOUR MODELS AND PUT THEM ON THE BIGGEST TABLE YOU GET.",
+        code: "APO",
+        gameSystemCode: ["WAK"],
+        minimumPoints: 3000,
+        maximumPoints: 30000,
+        pointsIncrement: 100,
+      },
+    },
+  },
 ];
 
 describe("KeyUtils.js", () => {
