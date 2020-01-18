@@ -39,6 +39,8 @@
 <script>
 import MathsUtils from "../utils/MathsUtils";
 import KeyUtils from "../utils/KeyUtils";
+import DataUtils from "../utils/DataUtils";
+
 import { GameSystems } from "../data/GameSystems";
 import { Scenarios } from "../data/Scenarios";
 import { SubSystems } from "../data/SubSystems";
@@ -48,14 +50,15 @@ export default {
   data() {
     return {
       selection: {
-        gameSystem: { name: "", code: "", description: "" },
-        points: "",
-        scenario: { name: "", code: "", description: "" },
-        subSystem: { name: "", code: "", description: "", minimumPoints: -1, maximumPoints: -1, pointsIncrement: -1 },
+        gameSystem: DataUtils.getGameSystemByCode("AOS"),
+        points: "0",
+        subSystem: DataUtils.getSubSystemByCode("NRM"),
+        scenario: DataUtils.getScenarioByCode("DEA"),
       },
-      keyString: "",
+      keyString: "AOS-0-NRM-DEA",
     };
   },
+
   methods: {
     computeResult() {
       /* DRAWING A GAME SYSTEM */
@@ -73,14 +76,8 @@ export default {
         this.selection.subSystem = validSubSystems[subSystemIndex];
       } else {
         // Reseting the subSystem, otherwise we will get the previous one if there is no valid subSystem
-        this.selection.subSystem = {
-          name: "",
-          description: "",
-          minimumPoints: -1,
-          maximumPoints: -1,
-          pointsIncrement: -1,
-        };
-        this.selection.points = "";
+        this.selection.subSystem = DataUtils.getSubSystemByCode("NRM");
+        this.selection.points = "0";
       }
 
       /* DRAWING A MAXIMUM POINTS VALUE */
@@ -91,6 +88,7 @@ export default {
           this.selection.subSystem.minimumPoints,
           this.selection.subSystem.maximumPoints
         );
+
         this.selection.points = MathsUtils.roundUp(randomPoints, this.selection.subSystem.pointsIncrement);
       }
 
@@ -108,7 +106,7 @@ export default {
         this.selection.scenario = validScenarios[scenarioIndex];
       } else {
         // Reseting the scenario, otherwise we will get the previous one if there is no valid scenario
-        this.selection.scenario = { name: "", description: "" };
+        this.selection.scenario = DataUtils.getScenarioByCode("DEA");
       }
 
       /* GENERATING GAME KEY */
