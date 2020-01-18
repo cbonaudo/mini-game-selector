@@ -1,5 +1,12 @@
 export const Scenarios = [
   {
+    name: "Deathmatch",
+    description: "Destroy your ennemy",
+    code: "DEA",
+    gameSystemCodes: ["AOS", "AOF", "WAK", "GRF", "OOG"],
+    subSystemCodes: ["NRM", "SKI", "APO"],
+  },
+  {
     name: "A Time For Heroes",
     description: "Simple Deathmatch-like scenario",
     code: "AHE",
