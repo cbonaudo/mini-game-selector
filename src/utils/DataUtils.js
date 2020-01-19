@@ -3,7 +3,7 @@ import { Scenarios } from "../data/Scenarios";
 import { GameSystems } from "../data/GameSystems";
 
 export default class DataUtils {
-  static getDataByCode = function(dataType, code) {
+  static getDataByCode(dataType, code) {
     const wantedData = dataType.find(element => element.code === code);
 
     if (wantedData === undefined) {
@@ -11,7 +11,7 @@ export default class DataUtils {
     }
 
     return wantedData;
-  };
+  }
 
   static getGameSystemByCode(gameSystemCode) {
     return DataUtils.getDataByCode(GameSystems, gameSystemCode);
@@ -23,5 +23,21 @@ export default class DataUtils {
 
   static getScenarioByCode(scenarioCode) {
     return DataUtils.getDataByCode(Scenarios, scenarioCode);
+  }
+
+  static getDataByListOfCodes(dataType, codes) {
+    return codes.map(code => DataUtils.getDataByCode(dataType, code));
+  }
+
+  static getGameSystemsByListOfCodes(gameSystemCodes) {
+    return DataUtils.getDataByListOfCodes(GameSystems, gameSystemCodes);
+  }
+
+  static getSubSystemsByListOfCodes(subSystemCodes) {
+    return DataUtils.getDataByListOfCodes(SubSystems, subSystemCodes);
+  }
+
+  static getScenariosByListOfCodes(scenarioCodes) {
+    return DataUtils.getDataByListOfCodes(Scenarios, scenarioCodes);
   }
 }
