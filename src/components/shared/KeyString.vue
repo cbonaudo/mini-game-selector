@@ -1,7 +1,7 @@
 <template>
   <div id="key-string" v-on:click="copyKey" v-if="keyString">
     <div class="label">Share this key :</div>
-    <div :ref="'keyString'">{{ `http://localhost:8080/${keyString}` }}</div>
+    <div :ref="'keyString'">{{ `${appUrl}${keyString}` }}</div>
   </div>
 </template>
 
@@ -9,9 +9,12 @@
 export default {
   name: "KeyString",
   props: { keyString: String },
+  data() {
+    return { appUrl: window.location.origin + "/?key=" };
+  },
   methods: {
     copyKey() {
-      var range;
+      let range;
       if (document.selection) {
         // IE
         range = document.body.createTextRange();
