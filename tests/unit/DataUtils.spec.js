@@ -54,4 +54,43 @@ describe("DataUtils.js", () => {
       }
     });
   });
+
+  describe("getGameSystemsByListOfCodes()", () => {
+    it("Check that we get the list of gameSystems we want", () => {
+      const gameSystemsCodes = ["AOS", "OOG", "WAK"];
+      const expectedOutput = [
+        DataUtils.getGameSystemByCode("AOS"),
+        DataUtils.getGameSystemByCode("OOG"),
+        DataUtils.getGameSystemByCode("WAK"),
+      ];
+
+      expect(DataUtils.getGameSystemsByListOfCodes(gameSystemsCodes)).toEqual(expectedOutput);
+    });
+  });
+
+  describe("getSubSystemsByListOfCodes()", () => {
+    it("Check that we get the list of subSystems we want", () => {
+      const subSystemsCodes = ["SKI", "APO", "DTA"];
+      const expectedOutput = [
+        DataUtils.getSubSystemByCode("SKI"),
+        DataUtils.getSubSystemByCode("APO"),
+        DataUtils.getSubSystemByCode("DTA"),
+      ];
+
+      expect(DataUtils.getSubSystemsByListOfCodes(subSystemsCodes)).toEqual(expectedOutput);
+    });
+  });
+
+  describe("getScenariosByListOfCodes()", () => {
+    it("Check that we get the list of scenarios we want", () => {
+      const scenarioCodes = ["FBO", "THU", "DEA"];
+      const expectedOutput = [
+        DataUtils.getScenarioByCode("FBO"),
+        DataUtils.getScenarioByCode("THU"),
+        DataUtils.getScenarioByCode("DEA"),
+      ];
+
+      expect(DataUtils.getScenariosByListOfCodes(scenarioCodes)).toEqual(expectedOutput);
+    });
+  });
 });
