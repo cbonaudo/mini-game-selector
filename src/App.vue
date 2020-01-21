@@ -38,12 +38,15 @@ export default {
   font-size: 1.5em;
   border-radius: 5px;
 }
-
 .generator:hover {
   transition: all 0.2s ease-in-out;
   transform: scale(1.1);
   font-size: 1.6em;
   color: yellowgreen;
+}
+.generator:active {
+  transform: scale(1);
+  color: white;
 }
 .selection {
   margin: 20px;
