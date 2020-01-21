@@ -6,6 +6,13 @@
     color: #2c3e50;
     margin-top: 60px;
   }
+  h1 {
+    font-family: "breath", sans-serif;
+    font-size: 3em;
+    letter-spacing: 0.04em;
+    color: goldenrod;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  }
   .generator {
     background-image: url("../assets/generator.png");
     background-repeat: no-repeat;
@@ -17,7 +24,7 @@
     transition: all 0.2s ease-in-out;
     outline: 0;
   
-    font-family: "breath";
+    font-family: "breath", sans-serif;
     text-align: center;
     color: white;
     font-size: 1.8em;
@@ -36,7 +43,7 @@
     color: white;
   }
   .selection {
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     margin: 20px;
     font-size: 1.5em;
   }
