@@ -63,3 +63,5 @@ export const Scenarios = [
     subSystemCodes: ["NRM"],
   },
 ];
+
+export let filteredScenarios = Scenarios;

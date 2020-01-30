@@ -3,12 +3,18 @@
     <h1>MINIATURE WARGAMING SELECTOR</h1>
     <h2>WWWWWWWAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGGGHHH!!!!!!!</h2>
 
+    <div class="dropdown-list">
+      <GameSystemDropdown />
+      <ScenarioDropdown />
+      <SubSystemDropdown />
+    </div>
+
     <button v-on:click="computeResult()" class="generator">I WANNA FIGHT !</button>
 
     <div v-if="selection">
       <div v-if="selection.gameSystem.name" class="selection">
         {{
-          `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
+        `${selection.gameSystem.name} - ${selection.subSystem.name} - ${selection.points} Points - ${selection.scenario.name}`
         }}
       </div>
 
@@ -16,15 +22,20 @@
         <img v-bind:src="getImg(selection.gameSystem.code)" class="game-system" />
       </div>
 
-      <div v-if="selection.gameSystem.description" class="description">
-        {{ `- ${selection.gameSystem.description}` }}
-      </div>
+      <div
+        v-if="selection.gameSystem.description"
+        class="description"
+      >{{ `- ${selection.gameSystem.description}` }}</div>
 
-      <div v-if="selection.subSystem.description" class="description">{{ `- ${selection.subSystem.description}` }}</div>
+      <div
+        v-if="selection.subSystem.description"
+        class="description"
+      >{{ `- ${selection.subSystem.description}` }}</div>
 
-      <div v-if="selection.scenario.description" class="description">
-        {{ `- Scenario: ${selection.scenario.description}` }}
-      </div>
+      <div
+        v-if="selection.scenario.description"
+        class="description"
+      >{{ `- Scenario: ${selection.scenario.description}` }}</div>
     </div>
 
     <KeyString v-bind:keyString="keyString" />
@@ -34,17 +45,24 @@
 <script>
 import MathsUtils from "../utils/MathsUtils";
 import KeyUtils from "../utils/KeyUtils";
-import KeyString from "./shared/KeyString.vue";
 import DataUtils from "../utils/DataUtils";
 
-import { GameSystems } from "../data/GameSystems";
-import { Scenarios } from "../data/Scenarios";
-import { SubSystems } from "../data/SubSystems";
+import KeyString from "./shared/KeyString.vue";
+import GameSystemDropdown from "./shared/dropdowns/GameSystemDropdown.vue";
+import SubSystemDropdown from "./shared/dropdowns/SubSystemDropdown.vue";
+import ScenarioDropdown from "./shared/dropdowns/ScenarioDropdown.vue";
+
+import { filteredGameSystems } from "../data/GameSystems";
+import { filteredScenarios } from "../data/Scenarios";
+import { filteredSubSystems } from "../data/SubSystems";
 
 export default {
   name: "Selector",
   components: {
     KeyString,
+    GameSystemDropdown,
+    SubSystemDropdown,
+    ScenarioDropdown,
   },
   data() {
     let keyString = "";
@@ -72,12 +90,12 @@ export default {
 
       /* DRAWING A GAME SYSTEM */
 
-      const gameSystemIndex = MathsUtils.getRandomInt(0, GameSystems.length);
-      this.selection.gameSystem = GameSystems[gameSystemIndex];
+      const gameSystemIndex = MathsUtils.getRandomInt(0, filteredGameSystems.length);
+      this.selection.gameSystem = filteredGameSystems[gameSystemIndex];
 
       /* DRAWING A GAME SUB SYSTEM */
 
-      const validSubSystems = SubSystems.filter(subSystem => {
+      const validSubSystems = filteredSubSystems.filter(subSystem => {
         return subSystem.gameSystemCode.includes(this.selection.gameSystem.code);
       });
       if (validSubSystems.length) {
@@ -103,7 +121,7 @@ export default {
 
       /* DRAWING A SCENARIO */
 
-      const validScenarios = Scenarios.filter(scenario => {
+      const validScenarios = filteredScenarios.filter(scenario => {
         return (
           scenario.gameSystemCodes.includes(this.selection.gameSystem.code) &&
           scenario.subSystemCodes.includes(this.selection.subSystem.code)

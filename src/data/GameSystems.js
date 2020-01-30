@@ -25,3 +25,5 @@ export const GameSystems = [
     description: "One Page Rules miscellaneous miniatures games",
   },
 ];
+
+export let filteredGameSystems = GameSystems;

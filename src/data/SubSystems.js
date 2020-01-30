@@ -84,3 +84,5 @@ export const SubSystems = [
     pointsIncrement: 100,
   },
 ];
+
+export let filteredSubSystems = SubSystems;
